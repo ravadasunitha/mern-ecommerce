@@ -20,6 +20,10 @@ import ProductReviews from '../../components/Store/ProductReviews';
 import SocialShare from '../../components/Store/SocialShare';
 
 class ProductPage extends React.PureComponent {
+  handleCopyLink = () => {
+    navigator.clipboard.writeText(window.location.href);
+    alert('Product link copied!');
+};
   componentDidMount() {
     const slug = this.props.match.params.slug;
     this.props.fetchStoreProduct(slug);
@@ -58,6 +62,9 @@ class ProductPage extends React.PureComponent {
 
     return (
       <div className='product-shop'>
+      <button onClick={this.handleCopyLink}>
+    📋 Copy Product Link
+</button>
         {isLoading ? (
           <LoadingIndicator />
         ) : Object.keys(product).length > 0 ? (
